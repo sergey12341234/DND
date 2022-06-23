@@ -15,7 +15,7 @@ const SubDeskItems = ({ data, name }) => {
     }))
     // const click = () => dispatch(actionDeleteFromArr('first','some text 1',data,'second'))
     return (
-        <div onClick={() => dispatch(actionSetActiveDesk(name))} className='sub-desk-item' ref={drag}>
+        <div onMouseDown={() => dispatch(actionSetActiveDesk(name))} className='sub-desk-item' ref={drag}>
             { data.info }
         </div>
     )
