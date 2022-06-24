@@ -2,6 +2,7 @@ export const GET_CARTS = "GET_CARTS";
 export const DELETE_ITEM = "DELETE_ITEM";
 export const ADD_ITEM = "ADD_ITEM";
 export const SET_ACTIVE_DESK = "SET_ACTIVE_DESK";
+export const SET_NEW_ARR = "SET_NEW_ARR";
 
 export const actionSetActiveDesk = (payload) => ({ type: SET_ACTIVE_DESK, payload })
 
@@ -26,6 +27,17 @@ const addToArr = (state,arrToAdd, data) => {
         return { type: ADD_ITEM, payload: filtered }
 }
 
+const setNewArr = (state,setNewArr, data) => {
+    const filtered = state().cards.data.map(item => {
+        if(item.name === setNewArr) {
+            return { ...item, items:  [...data] }
+        }
+        return item
+    })
+    console.log(filtered)
+    return { type: SET_NEW_ARR, payload: filtered }
+}
+
 export const actionGetCarts = () => ({ type: GET_CARTS })
 
 
@@ -33,5 +45,11 @@ export const actionAddToArr = (data,arrToAdd,arrToRemove) => {
     return async (dispatch,getState) =>  {
         await dispatch(ArrToDelete(getState,arrToRemove,data))
         dispatch(addToArr(getState,arrToAdd,data))
+    }
+}
+
+export const actionSetNewArr = (data,newArr) => {
+    return (dispatch,getState) => {
+        dispatch(setNewArr(getState,newArr,data))
     }
 }

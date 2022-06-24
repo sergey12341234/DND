@@ -8,8 +8,8 @@ const Desk = () => {
     const desks = useSelector(state => state.cards.data)
 
     useEffect(() => {
-        dispatch(actionGetCarts())
-    },[])
+        
+    },desks)
 
     return (
         <div className='desk'>
