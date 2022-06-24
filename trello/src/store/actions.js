@@ -8,7 +8,7 @@ export const actionSetActiveDesk = (payload) => ({ type: SET_ACTIVE_DESK, payloa
 const ArrToDelete = (state,arrFromRemove,data) => {
     const filtered = state().cards.data.map(item => {
         if(item.name === arrFromRemove) {
-            const newArr = item.items.filter(node => node.info !== data)
+            const newArr = item.items.filter(node => node.info !== data.info)
             return { ...item, items: newArr }
         }
         return item
@@ -27,15 +27,11 @@ const addToArr = (state,arrToAdd, data) => {
 }
 
 export const actionGetCarts = () => ({ type: GET_CARTS })
-// export const actionDeleteFromArr = (data,arrToRemove) => {
-//     return (dispatch,getState) =>  {
-//         dispatch(ArrToDelete(getState,arrToRemove,data))
-//     }
-// }
+
 
 export const actionAddToArr = (data,arrToAdd,arrToRemove) => {
-    return (dispatch,getState) =>  {
-        dispatch(ArrToDelete(getState,arrToRemove,data))
+    return async (dispatch,getState) =>  {
+        await dispatch(ArrToDelete(getState,arrToRemove,data))
         dispatch(addToArr(getState,arrToAdd,data))
     }
 }
