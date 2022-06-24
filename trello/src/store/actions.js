@@ -2,7 +2,7 @@ export const GET_CARTS = "GET_CARTS";
 export const DELETE_ITEM = "DELETE_ITEM";
 export const ADD_ITEM = "ADD_ITEM";
 export const SET_ACTIVE_DESK = "SET_ACTIVE_DESK";
-export const SET_NEW_ARR = "SET_NEW_ARR";
+export const UPDATE_ARR = "UPDATE_ARR";
 
 export const actionSetActiveDesk = (payload) => ({ type: SET_ACTIVE_DESK, payload })
 
@@ -27,29 +27,45 @@ const addToArr = (state,arrToAdd, data) => {
         return { type: ADD_ITEM, payload: filtered }
 }
 
-const setNewArr = (state,setNewArr, data) => {
-    const filtered = state().cards.data.map(item => {
-        if(item.name === setNewArr) {
-            return { ...item, items:  [...data] }
-        }
-        return item
-    })
-    console.log(filtered)
-    return { type: SET_NEW_ARR, payload: filtered }
-}
-
 export const actionGetCarts = () => ({ type: GET_CARTS })
 
 
 export const actionAddToArr = (data,arrToAdd,arrToRemove) => {
     return async (dispatch,getState) =>  {
+        await dispatch(actionSetActiveDesk(arrToAdd))
         await dispatch(ArrToDelete(getState,arrToRemove,data))
         dispatch(addToArr(getState,arrToAdd,data))
     }
 }
 
-export const actionSetNewArr = (data,newArr) => {
+const updateInfo = (state,arrToUpdate, data) => {
+    const filtered = state().cards.data.map(item => {
+        if(item.name === arrToUpdate) {
+            data.forEach(item => {
+                if('index' in item) {
+                    delete item.index;
+                    return item;
+                }
+                return item;
+            });
+            return { ...item, items:  [...data] }
+        }
+        data.forEach(item => {
+            if('index' in item) {
+                delete item.index;
+                return item;
+            }
+            return item;
+        });
+        return item
+    })
+        return { type: UPDATE_ARR, payload: filtered }
+}
+
+export const actionSetNewArr = (arrToUpdate,data) => {
     return (dispatch,getState) => {
-        dispatch(setNewArr(getState,newArr,data))
+        dispatch(updateInfo(getState,arrToUpdate,data))
     }
 }
+
+

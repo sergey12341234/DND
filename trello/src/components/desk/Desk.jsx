@@ -4,12 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { actionGetCarts } from '../../store/actions';
 
 const Desk = () => {
-    const dispatch = useDispatch();
     const desks = useSelector(state => state.cards.data)
 
-    useEffect(() => {
-        
-    },desks)
 
     return (
         <div className='desk'>

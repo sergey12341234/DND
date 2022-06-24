@@ -1,4 +1,4 @@
-import { GET_CARTS, ADD_ITEM, DELETE_ITEM, SET_ACTIVE_DESK, SET_NEW_ARR } from './actions';
+import { GET_CARTS, ADD_ITEM, DELETE_ITEM, SET_ACTIVE_DESK, UPDATE_ARR } from './actions';
 
 const initialState = { data:
     [
@@ -24,7 +24,7 @@ const initialState = { data:
 
 export const CardsReducer = (state = initialState, { type, payload, }) => {
     if(type === GET_CARTS) {
-        return {...state};
+        return state;
     };
     if(type === DELETE_ITEM) {
         return {
@@ -44,12 +44,13 @@ export const CardsReducer = (state = initialState, { type, payload, }) => {
             activeDesk: payload
         }
     }
-    if(type === SET_NEW_ARR) {
+    if(type === UPDATE_ARR ) {
         return {
             ...state,
             data: payload
         }
     }
+
 
     return state || {};
 }
