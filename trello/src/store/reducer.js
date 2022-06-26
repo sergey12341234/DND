@@ -2,22 +2,31 @@ import { GET_CARTS, ADD_ITEM, DELETE_ITEM, SET_ACTIVE_DESK, UPDATE_ARR } from '.
 
 const initialState = { data:
     [
-        {name: 'first', items: 
-            [
-                {info: 'some text 1'},
-                {info: 'some text 4'},
-                {info: 'some text 5'},
-            ]
+        {
+            name: 'first', 
+            id: 1, 
+            items: 
+                [
+                    { info: 'some text 1', id: 1 },
+                    { info: 'some text 4', id: 4 },
+                    { info: 'some text 5', id: 5 },
+                ]
         },
-        {name: 'second', items: 
-            [
-                {info: 'some text 2'}
-            ]
-        },
-        {name: 'third', items: 
-            [
-                {info: 'some text 3'}
-            ]
+        {
+            name: 'second',
+            id: 2, 
+            items: 
+                [
+                    { info: 'some text 2', id: 2 }
+                ]
+            },
+        {
+            name: 'third', 
+            id: 3, 
+            items: 
+                [
+                    { info: 'some text 3', id: 3 }
+                ]
         }
     ]
 }

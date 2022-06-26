@@ -1,0 +1,25 @@
+.sub-desk {
+    width: 250px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+    h2 {
+        color: white;
+        margin-bottom: 15px;
+    }
+    .sub-desk-dnd {
+        border-radius: 14px;
+        padding: 15px;
+        width: 250px;
+        min-height: 150px;
+        .sub-desk-item {
+            padding: 16px;
+            min-height: 50px;
+            margin:  0 0 16px 0;
+            color: white;
+            border-radius: 14px;
+        }
+    }
+}

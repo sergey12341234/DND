@@ -11,7 +11,7 @@ const Desk = () => {
         <div className='desk'>
             <h1>Trello Copy</h1>
             <div className="desks">
-                {desks.length > 0 && desks.map((item,index) => <SubDesk key={index} data={item}/>)}
+                {desks.length > 0 && desks.map(item => <SubDesk key={item.id} data={item}/>)}
             </div>
         </div>
     )

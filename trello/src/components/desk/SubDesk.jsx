@@ -10,20 +10,20 @@ const SubDesk = ({ data }) => {
     const dispatch = useDispatch();
     const { name, items } = data;
     const activeDesk = useSelector(state => state.cards.activeDesk)
-    const [newItems,setNewItems] = useState(items || [])
+    const [newItems, setNewItems] = useState(items || [])
 
     const moveItem = (dragIndex, hoverIndex) => {
         const item = items[dragIndex];
         setNewItems(prevState => {
-            const newItems = prevState.filter((item,idx) => idx !== dragIndex);
-            newItems.splice(hoverIndex,0,item);
+            const newItems = prevState.filter((item, idx) => idx !== dragIndex);
+            newItems.splice(hoverIndex, 0, item);
             return [...newItems];
         })
     }
 
     useEffect(() => {
-        dispatch(actionSetNewArr(activeDesk,newItems))
-    },[newItems])
+        dispatch(actionSetNewArr(activeDesk, newItems))
+    }, [newItems])
 
     const [{ isOver, item }, drop] = useDrop(() => ({
         accept: 'DragItem',
@@ -35,13 +35,16 @@ const SubDesk = ({ data }) => {
     }), [activeDesk])
     useEffect(() => {
         if (activeDesk === name) return
-        isOver && dispatch(actionAddToArr(item, name, activeDesk))
+        if(isOver) {
+            delete item['index']
+            dispatch(actionAddToArr(item, name, activeDesk))
+        }
     }, [isOver])
     return (
         <div className={isOver ? 'sub-desk inside' : 'sub-desk'} ref={drop}>
             <h2>{name}</h2>
             <div className="sub-desk-items">
-                {items?.map((item,index) => <SubDeskItems activeDesk={activeDesk} key={item.info} index={index} moveItem={moveItem} data={item} name={name} />)}
+                {items?.map((item, index) => <SubDeskItems key={item.id} index={index} moveItem={moveItem} data={item} name={name} />)}
             </div>
         </div>
     )
