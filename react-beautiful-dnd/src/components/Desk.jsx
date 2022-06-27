@@ -4,20 +4,18 @@ import { useSelector, useDispatch } from 'react-redux/es/exports'
 import { actionMoveItem } from '../store/actions'
 
 
-const onDragEnd = async (result,dispatch) => {
-    if(!result.destination) return;
-    await dispatch(actionMoveItem(result))
+const onDragEnd = (result,dispatch) => {
+    dispatch(actionMoveItem(result))
 }
 
 const Desk = () => {
-    const ColumnsFromBackEnd = useSelector(state => state.cards)
+    const сolumnsFromBackEnd = useSelector(state => state.cards)
     const dispatch = useDispatch();
-
-
+    
     return (
         <div className='desk'>
             <DragDropContext onDragEnd={result => onDragEnd(result, dispatch)}>
-                { Object.entries(ColumnsFromBackEnd).map(([key,value]) => <SubDesk key={key} id={key} value={value}/>) }
+                {сolumnsFromBackEnd.length > 0 && сolumnsFromBackEnd.map((item) => <SubDesk key={item.id} item={item}/>) }
             </DragDropContext>
         </div>
     )
