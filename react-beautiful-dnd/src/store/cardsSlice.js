@@ -1,16 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { INITIAL_STATE } from '../components/Data/initialState';
-
+console.log(INITIAL_STATE)
 const cardsSlice = createSlice({
     name: 'cards',
     initialState: INITIAL_STATE,
     reducers: {
         actionMoveItem(state,action) {
-            console.log(state)
-            state.cards = [...action]
+            state = [...action.payload]
+            return state
         },
         actionAddItem(state,action) {
-            state.cards = [...action.payload]
+            state = [...action.payload]
+            return state
         }
     }
 });

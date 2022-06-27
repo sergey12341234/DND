@@ -1,9 +1,8 @@
 import { DragDropContext } from 'react-beautiful-dnd'
 import SubDesk from './SubDesk'
 import { useSelector, useDispatch } from 'react-redux/es/exports'
-import { actionMoveItem } from '../store/cardsSlice'
 import { changeArrWhenItemIsMove } from '../helpers/help'
-
+import { actionMoveItem } from '../store/cardsSlice'
 const onDragEnd = (result, dispatch, state) => {
     dispatch(actionMoveItem(changeArrWhenItemIsMove(result, state)))
 }
