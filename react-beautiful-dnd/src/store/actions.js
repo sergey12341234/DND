@@ -1,11 +1,7 @@
-import { changeArrWhenItemIsMove } from '../tools/tools'
+import { changeArrWhenItemIsMove } from '../helpers/help'
 
 export const MOVE_ITEM = 'MOVE_ITEM'
 export const ADD_ITEM = 'ADD_ITEM'
 
-export const actionAddItem = (item) => ({ type: ADD_ITEM, payload: item })
-export const actionMoveItem = (result) => {
-    return async (dispatch,getState) => { 
-        await dispatch(changeArrWhenItemIsMove(result, getState() ))
-    }
-}
+export const actionAddItem = (data) => ({ type: ADD_ITEM, payload: data })
+export const actionMoveItem = (data) => ({ type: MOVE_ITEM, payload: data })

@@ -1,6 +1,6 @@
 @import 'Desk.scss';
 @import 'SubDesk.scss';
-@import 'SubDeskItem.scss';
+@import 'Modal.scss';
 
 *{
     padding: 0;
@@ -8,6 +8,11 @@
     list-style: none;
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    input:active,
+    input:hover,
+    input:focus {
+        outline: none;
+    }
 }
 
 .app {

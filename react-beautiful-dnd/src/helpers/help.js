@@ -9,15 +9,15 @@ const findInArr = (arr, source, destination) => {
     return {sourceColumn, destColumn}
 }
 
-export const changeArrWhenItemIsMove = (payload,getState) => {
+export const changeArrWhenItemIsMove = (payload,state) => {
     const { source, destination } = payload;
-        const {sourceColumn, destColumn} = findInArr(getState.cards,source.droppableId, destination.droppableId)
+    const {sourceColumn, destColumn} = findInArr(state,source.droppableId, destination.droppableId)
         if(source.droppableId !== destination.droppableId) {
             const sourceItems = [...sourceColumn.items];
             const destItems = [...destColumn.items];
             const [removed] = sourceItems.splice(source.index, 1);
             destItems.splice(destination.index, 0, removed);
-            const newState = getState.cards.map(item => {
+            const newState = state.map(item => {
                 if(item.id === source.droppableId) {
                     return {
                         ...item,
@@ -32,15 +32,12 @@ export const changeArrWhenItemIsMove = (payload,getState) => {
                 }
                 return item
             })
-            return {
-                type: MOVE_ITEM,
-                payload: [...newState]
-            }
+            return [...newState]
         } else {
             const copiedItems = [...sourceColumn.items];
             const [removed] = copiedItems.splice(source.index, 1);
             copiedItems.splice(destination.index, 0, removed);
-            const newState = getState.cards.map(item => {
+            const newState = state.map(item => {
                 if(item.id === source.droppableId) {
                     return {
                         ...item,
@@ -49,9 +46,20 @@ export const changeArrWhenItemIsMove = (payload,getState) => {
                 }
                 return item
             })
+            return  [...newState]
+        }
+}
+
+
+export const addItem = ({id,state,itemToAdd}) => {
+    const newState = state.map(subDesk => {
+        if(subDesk.id === id) {
             return {
-                type: MOVE_ITEM,
-                payload: [...newState]
+                ...subDesk,
+                items: [...subDesk.items,itemToAdd]
             }
         }
+        return subDesk;
+    })
+    return [...newState]
 }

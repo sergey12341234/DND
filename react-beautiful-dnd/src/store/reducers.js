@@ -10,11 +10,10 @@ export const cardsReducer = (state = INITIAL_STATE, { type, payload }) => {
     }
 
     if(type === ADD_ITEM) {
-        const { item, idSubDesk } = payload
-        return {
-            ...state,
-            [idSubDesk]: [...state[idSubDesk], item]
-        }
+        console.log(payload)
+        return [
+            ...payload
+        ]
     }
 
     return state || {}
