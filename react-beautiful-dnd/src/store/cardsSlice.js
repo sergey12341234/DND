@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { INITIAL_STATE } from '../mocks/initialState';
+import { MOCK_DATA } from '../mocks/initialState';
 const cardsSlice = createSlice({
     name: 'cards',
-    initialState: INITIAL_STATE,
+    initialState: MOCK_DATA,
     reducers: {
         actionMoveItem(state,action) {
-            state = [...action.payload];
+            state = { ...action.payload };
             return state;
         },
         actionAddItem(state,action) {

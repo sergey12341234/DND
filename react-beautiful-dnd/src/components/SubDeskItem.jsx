@@ -17,7 +17,7 @@ const SubDeskItem = ({ item, index }) => {
                                 ...provided.draggableProps.style
                             }}
                         >
-                            { item.content }
+                            { item.title }
                         </div>
                     );
                 }
