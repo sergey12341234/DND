@@ -1,4 +1,4 @@
-import uuid from 'uuid/v4'
+import uuid from 'uuid/v4';
 
 
 export const INITIAL_STATE = [
@@ -22,4 +22,4 @@ export const INITIAL_STATE = [
         content: 'third',
         items: []
     },
-]
+];

@@ -3,13 +3,13 @@
 // import thunk from 'redux-thunk';
 // import { cardsReducer } from './reducers';
 import { configureStore } from '@reduxjs/toolkit';
-import cardsReducer from './cardsSlice'
+import cardsReducer from './cardsSlice';
 
 export default configureStore ({
     reducer: {
         cards: cardsReducer
     } 
-})
+});
 
 
 

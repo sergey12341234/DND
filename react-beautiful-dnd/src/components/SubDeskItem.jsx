@@ -1,5 +1,5 @@
-import React from 'react'
-import { Draggable } from 'react-beautiful-dnd'
+import React from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 
 const SubDeskItem = ({ item, index }) => {
     return (
@@ -19,11 +19,11 @@ const SubDeskItem = ({ item, index }) => {
                         >
                             { item.content }
                         </div>
-                    )
+                    );
                 }
                 }
             </Draggable>
-    )
-}
+    );
+};
 
-export default SubDeskItem
+export default SubDeskItem;

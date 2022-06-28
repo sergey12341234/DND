@@ -1,5 +1,6 @@
-import Desk from './components/Desk'
-import './styles/App.scss'
+import React from 'react';
+import Desk from './components/Desk';
+import './styles/App.scss';
 
 
 const App = () => {
@@ -7,7 +8,7 @@ const App = () => {
         <div className='app' >
             <Desk />
         </div>
-    )
-}
+    );
+};
 
-export default App
+export default App;
