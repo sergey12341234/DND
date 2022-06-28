@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../helpers/help';
@@ -9,17 +9,17 @@ import uuid from 'uuid/v4';
 import { selectorMainState } from '../store/selectors';
 
 
-const addNewItem = (dispatch,id,state,itemToAdd) => {
-    dispatch(actionAddItem(addItem({id,state,itemToAdd})));
-};
-
 const SubDesk = ({ item }) => {
     const [modalActive, setModalActive] = useState(false);
     const [itemContent, setItemContent] = useState('');
     const state = useSelector(selectorMainState);
-    console.log();
     const { content, items, id } = item;
     const dispatch = useDispatch();
+
+    const addNewItem = useCallback((dispatch,id,state,itemToAdd) => {
+        dispatch(actionAddItem(addItem({ id, state, itemToAdd })));
+    },[id,state]);
+
     return (
         <div className='sub-desk'>
             <h2>{ content } </h2>

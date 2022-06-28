@@ -4,12 +4,12 @@ const findInArr = (arr, source, destination) => {
         if(item.id === source) sourceColumn = item;
         if(item.id === destination) destColumn = item;
     });
-    return {sourceColumn, destColumn};
+    return { sourceColumn, destColumn };
 };
 
 export const changeArrWhenItemIsMove = (payload,state) => {
     const { source, destination } = payload;
-    const {sourceColumn, destColumn} = findInArr(state,source.droppableId, destination.droppableId);
+    const { sourceColumn, destColumn } = findInArr(state,source.droppableId, destination.droppableId);
         if(source.droppableId !== destination.droppableId) {
             const sourceItems = [...sourceColumn.items];
             const destItems = [...destColumn.items];
@@ -49,7 +49,7 @@ export const changeArrWhenItemIsMove = (payload,state) => {
 };
 
 
-export const addItem = ({id,state,itemToAdd}) => {
+export const addItem = ({ id, state, itemToAdd }) => {
     const newState = state.map(subDesk => {
         if(subDesk.id === id) {
             return {

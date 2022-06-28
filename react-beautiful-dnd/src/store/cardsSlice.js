@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { INITIAL_STATE } from '../components/Data/initialState';
+import { INITIAL_STATE } from '../mocks/initialState';
 const cardsSlice = createSlice({
     name: 'cards',
     initialState: INITIAL_STATE,
