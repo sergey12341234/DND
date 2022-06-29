@@ -16,7 +16,7 @@ const Desk = () => {
 
     return (
         <div className='desk'>
-            <DragDropContext onDragEnd={result => onDragEnd(result)}>
+            <DragDropContext onDragEnd={onDragEnd}>
                 {Object.entries(сolumnsFromBackEnd).map(([deskName, items]) => <SubDesk key={deskName} deskName={deskName} items={items} />)}
             </DragDropContext>
         </div>
