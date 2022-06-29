@@ -6,16 +6,19 @@ import { actionAddItem } from '../store/cardsSlice';
 import Modal from './modal/Modal';
 import SubDeskItem from './SubDeskItem';
 import uuid from 'uuid/v4';
-import { selectorColumns } from '../store/selectors';
+import { selectorColumns, selectorState } from '../store/selectors';
 
 
 const SubDesk = ({ items, deskName }) => {
     const [modalActive, setModalActive] = useState(false);
-    const [itemContent, setItemContent] = useState('');
-    const state = useSelector(selectorColumns);
+    const [itemTitle, setItemTitle] = useState('');
+    const [itemPriority, setItemPriority] = useState('');
+    const [itemDescription, setItemDescription] = useState('');
+    const desks = useSelector(selectorColumns);
+    const state = useSelector(selectorState);
     const dispatch = useDispatch();
-    const addNewItem = useCallback((dispatch, id, state, itemToAdd) => {
-        dispatch(actionAddItem(addItem({ id, state, itemToAdd })));
+    const addNewItem = useCallback((itemToAdd) => {
+        dispatch(actionAddItem(addItem({ state, itemToAdd })));
     }, [deskName, state]);
     return (
         <div className='sub-desk'>
@@ -40,9 +43,13 @@ const SubDesk = ({ items, deskName }) => {
             <button onClick={() => setModalActive(true)}>Add item</button>
             <Modal active={modalActive} setActive={setModalActive}>
                 <h2>Add item</h2>
-                <input value={itemContent} onChange={(e) => setItemContent(e.target.value)} type='text' placeholder='input content' />
+                <input value={itemTitle} onChange={(e) => setItemTitle(e.target.value)} type='text' placeholder='input title' />
+                <input value={itemDescription} onChange={(e) => setItemDescription(e.target.value)} type='text' placeholder='input description' />
+                <input value={itemPriority} onChange={(e) => setItemPriority(e.target.value)} type='text' placeholder='input priority' />
                 <button onClick={() => {
-                    addNewItem(dispatch, deskName, state, { id: uuid(), content: itemContent });
+                    addNewItem({ id: uuid(), title: itemTitle, description: itemDescription, priority: itemPriority ,status: { 
+                        status: deskName, order: desks[deskName].filter(item => item.status.status === deskName).length 
+                    } });
                     setModalActive(false);
                 }}>Add item</button>
                 <button onClick={() => setModalActive(false)}>Close</button>

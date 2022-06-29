@@ -7,11 +7,12 @@ const findInArr = (state, source, destination) => {
     return { sourceColumn, destColumn };
 };
 
-
-
-
 export const changeArrWhenItemIsMove = (payload, state, currentState) => {
     const { source, destination } = payload;
+    if  (
+        currentState.columns.indexOf(source.droppableId) > currentState.columns.indexOf(destination.droppableId) + 1 || 
+        currentState.columns.indexOf(source.droppableId) < currentState.columns.indexOf(destination.droppableId) - 1
+    ) return { ...currentState };
     const { sourceColumn, destColumn } = findInArr(state, source.droppableId, destination.droppableId);
     if(source.droppableId !== destination.droppableId) {
         const sourceItems = [...sourceColumn];
@@ -55,62 +56,20 @@ export const changeArrWhenItemIsMove = (payload, state, currentState) => {
     }
 };
 
+export const addItem = ({ state,itemToAdd }) => {
+    return {
+        ...state,
+        items: [...state.items, itemToAdd]
+    };
+};
 
-
-
-
-// export const changeArrWhenItemIsMove = (payload,state) => {
-//     const { source, destination } = payload;
-//     console.log(source, destination, payload);
-//     const { sourceColumn, destColumn } = findInArr(state,source.droppableId, destination.droppableId);
-//         if(source.droppableId !== destination.droppableId) {
-//             const sourceItems = [...sourceColumn.items];
-//             const destItems = [...destColumn.items];
-//             const [removed] = sourceItems.splice(source.index, 1);
-//             destItems.splice(destination.index, 0, removed);
-//             const newState = state.map(item => {
-//                 if(item.id === source.droppableId) {
-//                     return {
-//                         ...item,
-//                         items: sourceItems
-//                     };
-//                 }
-//                 if(item.id === destination?.droppableId) {
-//                     return {
-//                         ...item,
-//                         items: destItems
-//                     };
-//                 }
-//                 return item;
-//             });
-//             return [...newState];
-//         } else {
-//             const copiedItems = [...sourceColumn.items];
-//             const [removed] = copiedItems.splice(source.index, 1);
-//             copiedItems.splice(destination.index, 0, removed);
-//             const newState = state.map(item => {
-//                 if(item.id === source.droppableId) {
-//                     return {
-//                         ...item,
-//                         items: copiedItems
-//                     };
-//                 }
-//                 return item;
-//             });
-//             return  [...newState];
-//         }
-// };
-
-
-export const addItem = ({ id, state, itemToAdd }) => {
-    const newState = state.map(subDesk => {
-        if(subDesk.id === id) {
-            return {
-                ...subDesk,
-                items: [...subDesk.items,itemToAdd]
-            };
-        }
-        return subDesk;
+export const updateItem = ({ state,itemToUpdate }) => {
+    const newItems = state.items.map(item => {
+        if(item.id === itemToUpdate.id) return itemToUpdate;
+        return item;
     });
-    return [...newState];
+    return {
+        ...state,
+        items: [...newItems]
+    };
 };

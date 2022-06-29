@@ -14,11 +14,51 @@
         width: 250px;
         min-height: 150px;
         .sub-desk-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
             padding: 16px;
             min-height: 50px;
             margin:  0 0 16px 0;
             color: white;
             border-radius: 14px;
+            h3 {
+                font-weight: 400;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+            .sub-desk-item__description{
+                margin-bottom: 10px;           
+            }
+            .sub-desk-item__info {
+                display: flex;
+                justify-content: space-between;
+            }
+            .icon {
+                cursor: pointer;
+                font-size: 15px;
+                position: absolute;
+                top: 40%;
+                right: 10px;
+                transition: 0.3s;
+                opacity: 0;
+            }
+            &:hover {
+                .icon {
+                    opacity: 1;
+                }
+            }
+            input {
+                width: 80%;
+                padding-left: 10px;
+                border-radius: 4px;
+                margin-bottom: 8px;
+                border: none;
+                background-color: #f5f5f5;
+                height: 20px;
+                border: none;
+
+            }
         }
     }
     button {

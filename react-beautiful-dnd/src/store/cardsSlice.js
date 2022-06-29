@@ -9,12 +9,16 @@ const cardsSlice = createSlice({
             return state;
         },
         actionAddItem(state,action) {
-            state = [...action.payload];
+            state = { ...action.payload };
+            return state;
+        },
+        actionUpdateItem(state,action) {
+            state = { ...action.payload };
             return state;
         }
     }
 });
 
-export const { actionMoveItem, actionAddItem } = cardsSlice.actions;
+export const { actionMoveItem, actionAddItem, actionUpdateItem } = cardsSlice.actions;
 
 export default cardsSlice.reducer;

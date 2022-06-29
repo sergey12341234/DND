@@ -10,9 +10,9 @@ const Desk = () => {
     const сolumnsFromBackEnd = useSelector(selectorColumns);
     const currentState = useSelector(selectorState);
     const dispatch = useDispatch();
-    const onDragEnd = useCallback((result, dispatch, state, currentState) => {
-        dispatch(actionMoveItem(changeArrWhenItemIsMove(result, state, currentState)));
-    },[сolumnsFromBackEnd]);
+    const onDragEnd = useCallback((result, dispatch) => {
+        dispatch(actionMoveItem(changeArrWhenItemIsMove(result, сolumnsFromBackEnd, currentState)));
+    },[currentState, сolumnsFromBackEnd]);
 
     return (
         <div className='desk'>
