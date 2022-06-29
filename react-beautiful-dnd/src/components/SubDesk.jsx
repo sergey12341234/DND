@@ -17,7 +17,7 @@ const SubDesk = ({ items, deskName }) => {
     const desks = useSelector(selectorColumns);
     const state = useSelector(selectorState);
     const dispatch = useDispatch();
-    const handlerAddNewItem = (itemTitle, itemDescription, itemPriority, deskName) => useCallback(() => {
+    const handlerAddNewItem = () => useCallback(() => {
         const itemToAdd = {
             id: uuid(),
             title: itemTitle,
@@ -57,7 +57,7 @@ const SubDesk = ({ items, deskName }) => {
                 <input value={itemTitle} onChange={(e) => setItemTitle(e.target.value)} type='text' placeholder='input title' />
                 <input value={itemDescription} onChange={(e) => setItemDescription(e.target.value)} type='text' placeholder='input description' />
                 <input value={itemPriority} onChange={(e) => setItemPriority(e.target.value)} type='text' placeholder='input priority' />
-                <button onClick={handlerAddNewItem(itemTitle, itemDescription, itemPriority, deskName)}>
+                <button onClick={handlerAddNewItem()}>
                     Add item
                 </button>
                 <button onClick={() => setModalActive(false)}>
