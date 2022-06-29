@@ -10,14 +10,14 @@ const Desk = () => {
     const сolumnsFromBackEnd = useSelector(selectorColumns);
     const currentState = useSelector(selectorState);
     const dispatch = useDispatch();
-    const onDragEnd = useCallback((result, dispatch) => {
+    const onDragEnd = useCallback((result) => {
         dispatch(actionMoveItem(changeArrWhenItemIsMove(result, сolumnsFromBackEnd, currentState)));
-    },[currentState, сolumnsFromBackEnd]);
+    }, [сolumnsFromBackEnd, currentState, dispatch]);
 
     return (
         <div className='desk'>
-            <DragDropContext onDragEnd={result => onDragEnd(result, dispatch, сolumnsFromBackEnd, currentState)}>
-                {Object.entries(сolumnsFromBackEnd).map(([deskName,items]) => <SubDesk key={deskName} deskName={deskName} items={items} />) }
+            <DragDropContext onDragEnd={result => onDragEnd(result)}>
+                {Object.entries(сolumnsFromBackEnd).map(([deskName, items]) => <SubDesk key={deskName} deskName={deskName} items={items} />)}
             </DragDropContext>
         </div>
     );

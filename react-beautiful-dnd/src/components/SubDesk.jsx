@@ -17,9 +17,20 @@ const SubDesk = ({ items, deskName }) => {
     const desks = useSelector(selectorColumns);
     const state = useSelector(selectorState);
     const dispatch = useDispatch();
-    const addNewItem = useCallback((itemToAdd) => {
+    const handlerAddNewItem = (itemTitle, itemDescription, itemPriority, deskName) => useCallback(() => {
+        const itemToAdd = {
+            id: uuid(),
+            title: itemTitle,
+            description: itemDescription,
+            priority: itemPriority
+            , status: {
+                status: deskName,
+                order: desks[deskName].filter(item => item.status.status === deskName).length
+            }
+        };
         dispatch(actionAddItem(addItem({ state, itemToAdd })));
-    }, [deskName, state]);
+        setModalActive(false);
+    }, [itemTitle, itemPriority, itemDescription, dispatch, deskName]);
     return (
         <div className='sub-desk'>
             <h2>{deskName} </h2>
@@ -46,13 +57,12 @@ const SubDesk = ({ items, deskName }) => {
                 <input value={itemTitle} onChange={(e) => setItemTitle(e.target.value)} type='text' placeholder='input title' />
                 <input value={itemDescription} onChange={(e) => setItemDescription(e.target.value)} type='text' placeholder='input description' />
                 <input value={itemPriority} onChange={(e) => setItemPriority(e.target.value)} type='text' placeholder='input priority' />
-                <button onClick={() => {
-                    addNewItem({ id: uuid(), title: itemTitle, description: itemDescription, priority: itemPriority ,status: { 
-                        status: deskName, order: desks[deskName].filter(item => item.status.status === deskName).length 
-                    } });
-                    setModalActive(false);
-                }}>Add item</button>
-                <button onClick={() => setModalActive(false)}>Close</button>
+                <button onClick={handlerAddNewItem(itemTitle, itemDescription, itemPriority, deskName)}>
+                    Add item
+                </button>
+                <button onClick={() => setModalActive(false)}>
+                    Close
+                </button>
             </Modal>
         </div>
     );
