@@ -16,7 +16,7 @@ const SubDeskItem = ({ item, index }) => {
     const [newPriority, setNewPriority] = useState(priority);
     const itemUpdate = useCallback((itemToUpdate) => {
         dispatch(actionUpdateItem(updateItem({ state,itemToUpdate })));
-    });
+    },[]);
 
     return (
         <Draggable key={id} draggableId={id} index={index} >
