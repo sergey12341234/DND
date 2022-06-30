@@ -1,0 +1,40 @@
+aside {
+    margin-top: 16;
+    .dropzone-preview {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        user-select: none;
+        .image-preview {
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            align-items: center;
+            margin: 0 10px 0 10px;
+            width: 160px;
+            height: 160px;
+            overflow: hidden;
+            padding: 10px;
+            .image-preview__inner {
+                display: flex;
+                min-width: 0;
+                overflow: hidden;
+                img {
+                    width: 90%;
+                    height: 90%;
+                    object-fit: cover;
+                }
+            }
+            &:hover {
+                cursor: grab;
+                transform: scale(1.1);
+            } 
+        }
+        .pdf-preview {
+            &:hover {
+                cursor: grab;
+                transform: scale(1.1);
+            }
+        }
+    }
+}
