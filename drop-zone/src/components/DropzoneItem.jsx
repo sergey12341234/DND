@@ -1,10 +1,12 @@
-import React, { useCallback, useRef } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
+import React, { useRef } from 'react';
+import { useDrag, useDrop, DragPreviewImage } from 'react-dnd';
 import mp3 from '../images/mp3.jpg';
 import video from '../images/video.webp';
+import pdf from '../images/icon_pdf-150x150.png';
+import { getSize } from './utils/helper';
 import { Document, Page, pdfjs } from 'react-pdf';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
 
 const DropzoneItem = ({ file, index, moveCard }) => {
     const { name } = file;
@@ -40,7 +42,7 @@ const DropzoneItem = ({ file, index, moveCard }) => {
             item.index = hoverIndex;
         },
     });
-    const [{ isDragging }, drag] = useDrag({
+    const [{ isDragging }, drag, preview] = useDrag({
         type: 'sortable',
         item: () => {
             return { name, index };
@@ -52,18 +54,6 @@ const DropzoneItem = ({ file, index, moveCard }) => {
     const opacity = isDragging ? 0 : 1;
     drag(drop(ref));
 
-
-
-    const handlerSize = useCallback((size) => {
-        if (size < 1000) {
-            return `${size} bytes`;
-        } else if (size < 1000000 && size > 1000) {
-            return `${(size / 1000).toFixed(2)} kb`;
-        } else {
-            return `${(size / 1000000).toFixed(2)} mb`;
-        }
-    }, [file.size]);
-
     if ((/image\/.{0,30}/.test(file.type))) {
         return (
             <div ref={ref} style={{ opacity }} data-handler-id={handlerId} className='image-preview' key={file.name}>
@@ -73,7 +63,7 @@ const DropzoneItem = ({ file, index, moveCard }) => {
                         src={file.preview}
                     />
                 </div>
-                <p>{handlerSize(file.size)}</p>
+                <p>{getSize(file.size)}</p>
             </div>
         );
     }
@@ -86,7 +76,7 @@ const DropzoneItem = ({ file, index, moveCard }) => {
                         src={video}
                     />
                 </div>
-                <p>{handlerSize(file.size)}</p>
+                <p>{getSize(file.size)}</p>
             </div>
         );
     }
@@ -99,21 +89,25 @@ const DropzoneItem = ({ file, index, moveCard }) => {
                         src={mp3}
                     />
                 </div>
-                <p>{handlerSize(file.size)}</p>
+                <p>{getSize(file.size)}</p>
             </div>
         );
     }
     if ((/application\/pdf/.test(file.type))) {
         return (
-            <div ref={ref} style={{ opacity }} data-handler-id={handlerId} className='pdf-preview'>
-                <Document file={file}>
-                        <Page width={100} pageNumber={1} />      
-                </Document>
-                <p>{handlerSize(file.size)}</p>
-            </div>
+            <>
+                <DragPreviewImage connect={preview} src={pdf} />
+                <span ref={ref} data-handler-id={handlerId} style={{ opacity }} key={file.name} className='pdf-preview'>
+                    <Document file={file}>
+                        <Page width={100} pageNumber={1} />
+                    </Document>
+                    <p>{getSize(file.size)}</p>
+                </span>
+            </>
         );
     }
+    return null;
 };
-    
 
-    export default DropzoneItem;
+
+export default DropzoneItem;

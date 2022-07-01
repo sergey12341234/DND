@@ -31,6 +31,7 @@ aside {
             } 
         }
         .pdf-preview {
+            margin: 10px;
             &:hover {
                 cursor: grab;
                 transform: scale(1.1);

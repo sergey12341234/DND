@@ -1,10 +1,10 @@
-import React,{ useCallback } from 'react';
+import React from 'react';
 import DropzoneImg from './DropzoneItem';
 import update from 'immutability-helper';
 
 
 const DropzonePreview = ({ files,setFiles }) => {
-    const moveCard = useCallback((dragIndex, hoverIndex) => {
+    const moveCard = (dragIndex, hoverIndex) => {
         setFiles((prevCards) =>
             update(prevCards, {
                 $splice: [
@@ -13,21 +13,11 @@ const DropzonePreview = ({ files,setFiles }) => {
                 ],
             }),
         );
-        }, []);
-    const renderCard = useCallback((file, index) => {
-        return (
-            <DropzoneImg
-                key={file.name}
-                file={file}
-                index={index}
-                moveCard={moveCard}
-            />
-        );
-    }, []);
+    };
 
     return (
         <div className='dropzone-preview'>
-            { files.map((file, index) => renderCard(file,index)) }
+            { files.map((file, index) => <DropzoneImg key={file.name} file={file} index={index} moveCard={moveCard} />) }
         </div>
     );
 };
