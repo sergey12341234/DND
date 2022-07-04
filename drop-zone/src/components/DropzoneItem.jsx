@@ -17,7 +17,7 @@ const DropzoneItem = ({ file, index, moveCard }) => {
                 handlerId: monitor.getHandlerId(),
             };
         },
-        hover(item, monitor) {
+        hover(item) {
             if (!ref.current) {
                 return;
             }
@@ -26,17 +26,17 @@ const DropzoneItem = ({ file, index, moveCard }) => {
             if (dragIndex === hoverIndex) {
                 return;
             }
-            const hoverBoundingRect = ref.current?.getBoundingClientRect();
-            const hoverMiddleY =
-                (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-            const clientOffset = monitor.getClientOffset();
-            const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-                return;
-            }
-            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-                return;
-            }
+            // const hoverBoundingRect = ref.current?.getBoundingClientRect();
+            // const hoverMiddleY =
+            //     (hoverBoundingRect.bottom - hoverBoundingRect.top) / 1.9;
+            // const clientOffset = monitor.getClientOffset();
+            // const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+            // if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+            //     return;
+            // }
+            // if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+            //     return;
+            // }
             moveCard(dragIndex, hoverIndex);
             item.index = hoverIndex;
         },

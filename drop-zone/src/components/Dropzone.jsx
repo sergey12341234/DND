@@ -9,31 +9,37 @@ const DropZone = () => {
     const [files, setFiles] = useState([]);
     const [modalActive, setModalActive] = useState(false);
     const { getRootProps, getInputProps } = useDropzone({
+        accept: {
+            'image/': [],
+            'audio/': [],
+            'video/': [],
+            'applicalion/': []
+        },
 
-    onDrop: acceptedFiles => {
-        if(acceptedFiles.length > 5 || acceptedFiles.length < 2) {
-            setModalActive(true);
-            return;
-        }
-        setFiles(acceptedFiles.map(file => {
-            if(/image\/.{0,15}/.test(file.type)) {
-                return Object.assign(file, {
-                    preview: URL.createObjectURL(file)
-                });
+        onDrop: acceptedFiles => {
+            if (acceptedFiles.length > 5 || acceptedFiles.length < 2) {
+                setModalActive(true);
+                return;
             }
-            return file;
-        }));
-        setFiles(acceptedFiles);
-    }
+            setFiles(acceptedFiles.map(file => {
+                if (/image\/.{0,15}/.test(file.type)) {
+                    return Object.assign(file, {
+                        preview: URL.createObjectURL(file)
+                    });
+                }
+                return file;
+            }));
+            setFiles(acceptedFiles);
+        }
     });
 
     return (
-        <section className="container">
-            { (files.length > 0) ? null : 
-                            <div {...getRootProps({ className: 'dropzone' })}>
-                                <input {...getInputProps()} />
-                                <p>ADD FILES</p>
-                            </div>
+        <section className="dropzone">
+            {(files.length > 0) ? null :
+                <div {...getRootProps({ className: 'dropzone-btn' })}>
+                    <input {...getInputProps()} />
+                    <p className='dropzone-field'>ADD FILES</p>
+                </div>
             }
             <aside>
                 <DropzonePreview files={files} setFiles={setFiles} />
