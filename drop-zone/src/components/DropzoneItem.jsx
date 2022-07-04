@@ -1,8 +1,7 @@
 import React, { useRef } from 'react';
-import { useDrag, useDrop, DragPreviewImage } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
 import mp3 from '../images/mp3.jpg';
 import video from '../images/video.webp';
-import pdf from '../images/icon_pdf-150x150.png';
 import { getSize } from './utils/helper';
 import { Document, Page, pdfjs } from 'react-pdf';
 
@@ -42,7 +41,7 @@ const DropzoneItem = ({ file, index, moveCard }) => {
             item.index = hoverIndex;
         },
     });
-    const [{ isDragging }, drag, preview] = useDrag({
+    const [{ isDragging }, drag] = useDrag({
         type: 'sortable',
         item: () => {
             return { name, index };
@@ -96,10 +95,9 @@ const DropzoneItem = ({ file, index, moveCard }) => {
     if ((/application\/pdf/.test(file.type))) {
         return (
             <>
-                <DragPreviewImage connect={preview} src={pdf} />
                 <span ref={ref} data-handler-id={handlerId} style={{ opacity }} key={file.name} className='pdf-preview'>
                     <Document file={file}>
-                        <Page width={100} pageNumber={1} />
+                        <Page canvasRef={ref} width={100} pageNumber={1} />
                     </Document>
                     <p>{getSize(file.size)}</p>
                 </span>
