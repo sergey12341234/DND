@@ -1,0 +1,26 @@
+@import 'AuthLayout.scss';
+@import 'normalize.css';
+@import 'mixins.scss';
+@import 'Aside.scss';
+@import 'Vine.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    input:active,
+    input:hover,
+    input:focus {
+        outline: none;
+    }
+    ul {
+        list-style: none;
+    }
+}
+
+.App {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #f7f5f9;
+}

@@ -12,7 +12,7 @@ export const selectorColumns = createSelector(
         columns.map(item => {
             columnsWithItems[item] ? columnsWithItems[item] = [] : columnsWithItems[item] = [];
         });
-        items.forEach   (item => columnsWithItems[item.status.status][item.status.order] = { ...item });
+        items.forEach(item => columnsWithItems[item.status.status][item.status.order] = { ...item });
         return columnsWithItems;
     },
 );

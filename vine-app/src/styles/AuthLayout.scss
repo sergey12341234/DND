@@ -1,0 +1,82 @@
+@import 'mixins.scss';
+.auth-layout {
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffe8d9;
+    background-image: url('../images/hero12svg-01.svg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .authOrRegister {
+        min-width: 500px;
+        background-color: #fef6f0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 24px;
+        padding: 50px;
+        h2 {
+            margin-top: 20px;
+            font-size: 40px;
+        }
+        .setLogOrRegister {
+            margin-top: 20px;
+            border-radius: 100%;
+            box-shadow: 0 2px 25px 0 rgb(0 0 0 / 10%);
+            width: 100%;
+            .singUp-btn {
+                @include logOrRegBtn;
+            }
+            .login-btn {
+                @include logOrRegBtn;
+            }
+        }
+        .email {
+            margin-top: 30px;
+            @include input;
+        }
+        .password {
+            margin-top: 20px;
+            @include input;
+        }
+        .reg-email {
+            margin-top: 20px;
+            @include input;
+        }
+        .reg-password {
+            margin-top: 20px;
+            @include input;
+        }
+        .reg-name {
+            margin-top: 30px;
+            @include input;
+        }
+        .reg-password-confirm {
+            margin-top: 20px;
+            @include input;
+        }
+        .login-btn__main {
+            background-color: #36264b;
+            margin-top: 40px;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            height: 50px;
+            border-radius: 14px;
+        }
+        .create-account-btn{
+            background-color: #36264b;
+            margin-top: 40px;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            height: 50px;
+            border-radius: 14px;
+        }
+        .forgotten-pass {
+            margin-top: 20px;
+        }
+    }
+}

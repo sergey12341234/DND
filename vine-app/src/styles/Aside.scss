@@ -1,0 +1,34 @@
+main {
+    display: flex;
+    padding-left: 130px;
+    width: 100%;
+    min-height: 100%;
+    aside {
+        position: fixed;
+        border-radius: 0 50px 0 0;
+        top: 8vh;
+        left: 0;
+        width: 110px;
+        height: 92vh;
+        background-color: #3d2b56;
+        ul {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            li {
+                color: #fde7da;
+                cursor: pointer;
+                h2 {
+                    font-size: 90px;
+                }
+                img {
+                    height: 77px;
+                    width: 77px;
+                }
+            }
+        }
+    }
+}
