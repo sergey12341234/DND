@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthLayout from './components/layouts/AuthLayout';
 import MainLayout from './components/layouts/MainLayout';
 import VineList from './components/vineTable/VineList';
-// import Protected from './components/ProtectedRoutes/Protected';
+import Protected from './components/ProtectedRoutes/Protected';
 
 function App() {
     return (
@@ -15,8 +15,7 @@ function App() {
                 <div className='App'>
                     <Routes>
                         <Route path='/auth' element={<AuthLayout />} />
-                        {/* <Route path='/' element={<Protected redirect='/auth' ><MainLayout /></Protected>} > */}
-                        <Route path='/' element={<MainLayout />} >
+                        <Route path='/' element={<Protected redirect='/auth' ><MainLayout /></Protected>} >
                             <Route index element={<VineList />}/>
                         </Route>
                     </Routes>
