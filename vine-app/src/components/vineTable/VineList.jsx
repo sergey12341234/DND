@@ -1,15 +1,18 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import refreshIcon from '../../images/refresh.svg';
 import sortIcon from '../../images/sort.svg';
 import addIcon from '../../images/add.svg';
 import VineTable from './VineTable';
-import { debounce } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { selectorSortByPriceHighToLow, selectorSortByPriceLowToHigh, selectorVine, selectorVineMain } from '../../store/selectors';
 import { actionNewSortData } from '../../store/sortSlice';
 import Modal from '../../modal/Modal';
+import { useDebouncedCallback } from 'use-debounce';
 
 const VineList = () => {
+    const debounced = useDebouncedCallback((value) => {
+        dispatch(actionNewSortData(value));
+    },300); 
     const vineList = useSelector(selectorVine);
     const vineListMain = useSelector(selectorVineMain);
     const dispatch = useDispatch();
@@ -38,14 +41,14 @@ const VineList = () => {
         dispatch(actionNewSortData(''));
         setVineItems(vineListMain);
     };
-    const handleSortStr = useCallback((e) => {
+    const handleSortStr = (e) => {
         setSortStr(e?.target?.value);
-        debounce(dispatch(actionNewSortData(e?.target?.value)),500);
-    },[]);
-
+    };
     useEffect(() => {
+        debounced(sortStr);
+        // dispatch(actionNewSortData(sortStr));
         setVineItems(vineList);
-    }, [vineList]);
+    }, [sortStr,vineList]);
 
     return (
         <div className='vine'>
