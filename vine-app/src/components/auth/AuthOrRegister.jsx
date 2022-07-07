@@ -49,7 +49,7 @@ const AuthOrRegister = () => {
                     <div className="password">
                         <input value={pass} onChange={handleSetPass} type="password" placeholder='Password'/>
                     </div>
-                    <button onClick={handleLogin} className='login-btn__main'>LOGIN</button>
+                    <NavLink to='/' className='nav-link' ><button onClick={handleLogin} className='login-btn__main'>LOGIN</button></NavLink>
                     <NavLink className='forgotten-pass' to='/forgotPass'>Forgotten Password</NavLink>
                 </>
             ) : (
@@ -66,7 +66,7 @@ const AuthOrRegister = () => {
                     <div className="reg-password-confirm">
                         <input value={confirmRegPass} onChange={handleSetConfirmRegPass} type="password" placeholder='Confirm password'/>
                     </div>
-                    <button onClick={handleRegister} className='create-account-btn'>Create Account</button>
+                    <NavLink to='/' className='nav-link' ><button onClick={handleRegister} className='create-account-btn'>Create Account</button></NavLink>
                     <NavLink className='forgotten-pass' to='/forgotPass'>Forgotten Password</NavLink>
                 </>
             )

@@ -57,23 +57,26 @@
             margin-top: 20px;
             @include input;
         }
-        .login-btn__main {
-            background-color: #36264b;
-            margin-top: 40px;
-            color: white;
-            cursor: pointer;
+        .nav-link {
             width: 100%;
-            height: 50px;
-            border-radius: 14px;
-        }
-        .create-account-btn{
-            background-color: #36264b;
-            margin-top: 40px;
-            color: white;
-            cursor: pointer;
-            width: 100%;
-            height: 50px;
-            border-radius: 14px;
+            .login-btn__main {
+                background-color: #36264b;
+                margin-top: 40px;
+                color: white;
+                cursor: pointer;
+                width: 100%;
+                height: 50px;
+                border-radius: 14px;
+            }
+            .create-account-btn{
+                background-color: #36264b;
+                margin-top: 40px;
+                color: white;
+                cursor: pointer;
+                width: 100%;
+                height: 50px;
+                border-radius: 14px;
+            }
         }
         .forgotten-pass {
             margin-top: 20px;

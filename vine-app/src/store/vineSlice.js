@@ -5,9 +5,12 @@ const authSlice = createSlice({
     name: 'vine',
     initialState: MOCK_DATA_VINE,
     reducers: {
+        actionAddVine(state,action) {
+            return [...state, action.payload];
+        }
     }
 });
 
-// export const { actionRegister, actionLogin } = authSlice.actions;
+export const { actionAddVine } = authSlice.actions;
 
 export default authSlice.reducer;

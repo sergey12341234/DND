@@ -9,7 +9,7 @@ import settingsIcon from '../../images/settings-01.svg';
 const MainLayout = () => {
     return (
         <main>
-            <aside>
+            <aside className='main-aside'>
                 <ul>
                     <li>
                         <div className="logo">

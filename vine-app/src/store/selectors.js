@@ -3,6 +3,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const vine = state => state.vine;
 const sort = state => state.sort.sort;
+const login = state => state.auth.auth.user;
 
 export const selectorSort = createSelector(
     [sort,vine],
@@ -48,4 +49,17 @@ export const selectorVine = createSelector(
         console.log(mainState);
         return mainState;
     },
+    
+);
+
+export const selectorVineMain = createSelector(
+    [selectorSort],
+    (mainState) => mainState
+    
+);
+
+export const selectorAuth = createSelector(
+    [login],
+    (loginInfo) => loginInfo
+    
 );
