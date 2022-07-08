@@ -18,7 +18,7 @@ const FormikAddItem = ({ active, setActive }) => {
         region: yup.string().required(),
         grape: yup.string().required(),
         type: yup.string().required(),
-        price: yup.number().required(),
+        price: yup.number('must be number').required(),
     });
     return (
         <Formik
@@ -32,7 +32,7 @@ const FormikAddItem = ({ active, setActive }) => {
 
             }}
             validateOnBlur
-            onSubmit={(values,{ resetForm }) => {
+            onSubmit={(values, { resetForm }) => {
                 handleAddItem(values);
                 setActive(false);
                 resetForm({ values: '' });
@@ -57,7 +57,7 @@ const FormikAddItem = ({ active, setActive }) => {
                             onChange={handleChange}
                             handleBlur={handleBlur}
                             type="text"
-                            placeholder='Country' 
+                            placeholder='Country'
                         />
                         {touched.country && errors.country && <span className='error'>{errors.country}</span>}
                         <input
