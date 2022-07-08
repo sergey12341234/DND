@@ -3,7 +3,7 @@ export const MOCK_DATA_AUTH = {
         error: null,
         user: null
     },
-    users:[{ name: 'Anton', email: 'qwerty@gmail.com', password: 'qwerty' }]
+    users:[{ name: 'Anton', email: 'qwerty@gmail.com', password: 'Qwerty1' }]
 };
 
 export const MOCK_DATA_VINE = [

@@ -6,8 +6,8 @@ import VineTable from './VineTable';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { selectorSortByPriceHighToLow, selectorSortByPriceLowToHigh, selectorVine, selectorVineMain } from '../../store/selectors';
 import { actionNewSortData } from '../../store/sortSlice';
-import Modal from '../../modal/Modal';
 import { useDebouncedCallback } from 'use-debounce';
+import FormikAddItem from '../../modal/FormikAddItem';
 
 const VineList = () => {
     const debounced = useDebouncedCallback((value) => {
@@ -77,7 +77,7 @@ const VineList = () => {
             <div className="table">
                 <VineTable vineItems={vineItems} setVineItems={setVineItems} />
             </div>
-            <Modal active={modalActive} setActive={setModalActive} />
+            <FormikAddItem  active={modalActive} setActive={setModalActive} />
         </div>
     );
 };

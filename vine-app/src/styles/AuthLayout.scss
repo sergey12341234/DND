@@ -1,4 +1,5 @@
 @import 'mixins.scss';
+
 .auth-layout {
     width: 100vw;
     height: 100vh;
@@ -10,7 +11,7 @@
     justify-content: center;
     align-items: center;
     .authOrRegister {
-        min-width: 500px;
+        width: 500px;
         background-color: #fef6f0;
         display: flex;
         flex-direction: column;
@@ -57,26 +58,24 @@
             margin-top: 20px;
             @include input;
         }
-        .nav-link {
+        .login-btn__main {
             width: 100%;
-            .login-btn__main {
-                background-color: #36264b;
-                margin-top: 40px;
-                color: white;
-                cursor: pointer;
-                width: 100%;
-                height: 50px;
-                border-radius: 14px;
-            }
-            .create-account-btn{
-                background-color: #36264b;
-                margin-top: 40px;
-                color: white;
-                cursor: pointer;
-                width: 100%;
-                height: 50px;
-                border-radius: 14px;
-            }
+            background-color: #36264b;
+            margin-top: 40px;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            height: 50px;
+            border-radius: 14px;
+        }
+        .create-account-btn{
+            background-color: #36264b;
+            margin-top: 40px;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            height: 50px;
+            border-radius: 14px;
         }
         .forgotten-pass {
             margin-top: 20px;

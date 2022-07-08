@@ -7,6 +7,7 @@ import AuthLayout from './components/layouts/AuthLayout';
 import MainLayout from './components/layouts/MainLayout';
 import VineList from './components/vineTable/VineList';
 import Protected from './components/ProtectedRoutes/Protected';
+import FormikAuth from './components/auth/FormikLogin';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                         <Route path='/' element={<Protected redirect='/auth' ><MainLayout /></Protected>} >
                             <Route index element={<VineList />}/>
                         </Route>
+                        <Route path='/formik' element={<FormikAuth />}/>
                     </Routes>
                 </div>
             </Provider>
